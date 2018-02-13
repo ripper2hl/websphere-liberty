@@ -18,6 +18,8 @@ ARG REPOSITORIES_PROPERTIES=""
 
 COPY server.xml /config/
 
+RUN /opt/ibm/wlp/bin/installUtility install --acceptLicense wasJmsClient-1.1
+
 RUN if [ ! -z $REPOSITORIES_PROPERTIES ]; then mkdir /opt/ibm/wlp/etc/ \
     && echo $REPOSITORIES_PROPERTIES > /opt/ibm/wlp/etc/repositories.properties; fi \
     && installUtility install --acceptLicense \
